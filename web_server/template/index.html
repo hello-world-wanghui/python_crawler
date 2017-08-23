@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	<script src="/static/js/jQuery.min.js"></script>
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/start.js"></script>
+</head>
+<body>
+<div class="row">
+	<div class=".col-xs-12">
+		<div id="mywarning" class="alert alert-warning">
+			<a href="#" class="close" data-dismiss="alert">&times;</a>
+			<strong>警告！</strong>您的网络连接有问题。
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2">
+		<ul class="nav nav-list well">
+			<li class="nav-header-warning">
+				doc文档
+			</li>
+			<li class="active">
+				<a href="#">安装教程</a>
+			</li>
+			<li>
+				<a href="#">使用手册</a>
+			</li>
+			<li>
+				<a href="#">其他</a>
+			</li>
+			<li class="nav-header-warning">
+				crawler爬虫
+			</li>
+			<li>
+				<a href="#">EDB</a>
+			</li>
+			<li>
+				<a href="#">research_report</a>
+			</li>
+			<li>
+				<a href="#">stock</a>
+			</li>
+			<li class="nav-header-warning">
+				监控页面
+			</li>
+			<li>
+				<a href="#">资料</a>
+			</li>
+			<li>
+				<a href="#">设置</a>
+			</li>
+			<li class="nav-header-warning">
+				个人中心
+			</li>
+			<li>
+				<a href="#">资料</a>
+			</li>
+			<li>
+				<a href="#">设置</a>
+			</li>
+			<li class="divider">
+			</li>
+			<li>
+				<a href="#">帮助</a>
+			</li>
+		</ul>
+	</div>
+	<div class="col-xs-6">
+        <div>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add_job">
+                 添加任务
+            </button>
+            <div class="modal fade" id="add_job" tabindex="-1" role="dialog" aria-labelledby="add_jobLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="add_jobLabel">添加任务</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form class="form-horizontal" id="from_add_job">
+                      <div class="form-group">
+                        <label for="job_path" class="col-sm-2 control-label">job_path</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="job_path" placeholder="job_path">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="JOB_classname" class="col-sm-2 control-label">classname</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="JOB_classname" placeholder="classname">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="JOB_ID" class="col-sm-2 control-label">job_id</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="JOB_ID" placeholder="job_id">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="JOB_trigger" class="col-sm-2 control-label">trigger</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="JOB_trigger" placeholder="trigger">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="JOB_args" class="col-sm-2 control-label">args</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="JOB_args" placeholder="args">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="JOB_name" class="col-sm-2 control-label">name</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="JOB_name" placeholder="name">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="JOB_jobstore" class="col-sm-2 control-label">jobstore</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="JOB_jobstore" placeholder="jobstore">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="jobstore_key" class="col-sm-2 control-label">key</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="jobstore_key" placeholder="key">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="jobstore_value" class="col-sm-2 control-label">value</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="jobstore_value" placeholder="value">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">call</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" id="submit_job">add job</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+		<table id="job_lists" class="table table-striped" contenteditable="true">
+			<thead>
+				<tr>
+					<th>
+						job_id
+					</th>
+					<th>
+						下次运行时间
+					</th>
+					<th>
+						项目名称
+					</th>
+					<th>
+						启动时间
+					</th>
+				</tr>
+			</thead>
+			<!--<tbody>-->
+				<!--<tr class="success">-->
+					<!--<td>-->
+						<!--1-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--TB - Monthly-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--01/04/2012-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--Approved-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--<button type="button" class="success">-->
+						  <!--run-->
+						<!--</button>-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--<button type="button" class="success">-->
+						  <!--run-->
+						<!--</button>-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--<button type="button" class="success">-->
+						  <!--run-->
+						<!--</button>-->
+					<!--</td>-->
+				<!--</tr>-->
+				<!--<tr class="error">-->
+					<!--<td>-->
+						<!--2-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--TB - Monthly-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--02/04/2012-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--Declined-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--<button type="button" class="success">-->
+						  <!--run-->
+						<!--</button>-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--<button type="button" class="success">-->
+						  <!--run-->
+						<!--</button>-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--<button type="button" class="success">-->
+						  <!--run-->
+						<!--</button>-->
+					<!--</td>-->
+				<!--</tr>-->
+				<!--<tr class="warning">-->
+					<!--<td>-->
+						<!--3-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--TB - Monthly-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--03/04/2012-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--Pending-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--<button type="button" class="success">-->
+						  <!--run-->
+						<!--</button>-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--<button type="button" class="success">-->
+						  <!--run-->
+						<!--</button>-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--<button type="button" class="success">-->
+						  <!--run-->
+						<!--</button>-->
+					<!--</td>-->
+				<!--</tr>-->
+				<!--<tr class="info">-->
+					<!--<td>-->
+						<!--4-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--TB - Monthly-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--04/04/2012-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--Call in to confirm-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--<button type="button" class="success">-->
+						  <!--run-->
+						<!--</button>-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--<button type="button" class="success">-->
+						  <!--run-->
+						<!--</button>-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--<button type="button" class="success">-->
+						  <!--run-->
+						<!--</button>-->
+					<!--</td>-->
+				<!--</tr>-->
+			<!--</tbody>-->
+		</table>
+        <ul class="pagination pagination-right">
+            <li><a href="#">&laquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+	</div>
+	<div class="col-xs-4">
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#publicModal">
+		  提示框
+		</button>
+		<div class="hero-unit well">
+			<h1>
+				welcome to crawler_server
+			</h1>
+			<p>
+				这是一个web服务可以监控你的爬虫状态
+			</p>
+			<p>
+				<a class="btn btn-primary btn-large" href="#">参看更多 »</a>
+			</p>
+		</div>
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="publicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">退出</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" language="javascript">
+	get_job_list("1");
+    $(function(){
+        $(".close").click(function(){
+            $("#mywarning").alert();
+        });
+    });
+
+</script>
+<script src="/static/js/end.js"></script>
+</body>
+</html>
